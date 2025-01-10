@@ -1,0 +1,91 @@
+Project Title: Predicting Diabetes Risk using Machine Learning on Health Indicators
+Problem Statement
+Diabetes is a chronic disease that affects millions of people worldwide, leading to serious health complications if left unmanaged. Early detection and intervention are crucial for improving patient outcomes. This project aims to develop a machine learning model that can accurately predict an individual's risk of developing diabetes based on their health indicators. By identifying individuals at high risk, healthcare professionals can provide targeted interventions and preventive measures to reduce the incidence of diabetes and its associated complications.
+
+Dataset Description
+Dataset: The project utilizes three datasets related to diabetes health indicators from the Behavioral Risk Factor Surveillance System (BRFSS) 2015 survey. These datasets are:
+
+diabetes_012_health_indicators_BRFSS2015.csv: Contains information about individuals with different levels of diabetes risk (0, 1, or 2).
+diabetes_binary_5050split_health_indicators_BRFSS2015.csv: Contains data with a balanced split of diabetic and non-diabetic individuals.
+diabetes_binary_health_indicators_BRFSS2015.csv: Contains binary classification data (diabetic or non-diabetic).
+Source: The datasets are publicly available and can be obtained from Kaggle or the BRFSS website.
+
+Size: The combined dataset has approximately 70,000 records and 22 features.
+
+Preprocessing:
+
+The target variable ('Diabetes_binary') is created or verified to be binary (0 or 1).
+The datasets are combined and checked for missing values.
+Data balancing is performed using the NearMiss technique to address class imbalance.
+Duplicate rows are removed.
+Features are standardized using StandardScaler to ensure they have zero mean and unit variance.
+Methods
+The project employs a supervised machine learning approach to predict diabetes risk. The implementation involves the following steps:
+
+Feature Selection: Three feature selection methods are applied to identify the most relevant predictors:
+
+Mutual Information: Measures the dependency between features and the target variable.
+Chi-squared: Assesses the independence between categorical features and the target variable.
+Pearson correlation: Measures the linear relationship between numerical features and the target variable. High-scoring features from each method are combined to create a final set of relevant features.
+Model Training: Four classification models are trained and evaluated:
+
+Random Forest: An ensemble learning method that combines multiple decision trees to improve prediction accuracy.
+Decision Tree: A tree-based model that makes predictions based on a series of decision rules.
+K-Nearest Neighbors: A non-parametric method that classifies data points based on their proximity to neighboring data points.
+XGBoost: A gradient boosting algorithm that combines weak learners to create a strong predictive model. This is the chosen model for this project due to its advantages in handling complex data and achieving high performance.
+Model Evaluation: Performance metrics are calculated to assess the models' predictive power:
+
+AUC score: Measures the area under the receiver operating characteristic curve, indicating the model's ability to distinguish between classes.
+Accuracy: Represents the proportion of correctly classified instances.
+Precision: Measures the proportion of true positive predictions among all positive predictions.
+Recall: Measures the proportion of true positive predictions among all actual positive instances.
+F1-score: Provides a balanced measure of precision and recall.
+Rationale for Choosing XGBoost over Logistic Regression and Other Models
+While logistic regression is a widely used and interpretable model for binary classification, XGBoost offers several advantages that make it a more suitable choice for this project:
+
+Handling Non-linearity: Diabetes risk prediction involves complex interactions between various health indicators, which are often non-linear. XGBoost can effectively capture these non-linear relationships, leading to better predictive accuracy compared to logistic regression, which assumes a linear relationship.
+
+Regularization: XGBoost incorporates regularization techniques, such as L1 and L2 regularization, to prevent overfitting and improve model generalization. This is crucial for dealing with high-dimensional datasets like the BRFSS survey data, where overfitting is a common concern. Logistic regression, while simpler, may be more prone to overfitting, especially when the number of features is large.
+
+Handling Missing Values: XGBoost has built-in mechanisms to handle missing values, which are prevalent in real-world datasets. It can automatically learn how to treat missing values during training, reducing the need for imputation or removal of data points. Logistic regression, in contrast, typically requires explicit handling of missing values, which can introduce biases or reduce the effective sample size.
+
+Feature Importance: XGBoost provides feature importance scores, which can be used to identify the most influential predictors for diabetes risk. This helps in understanding the underlying factors driving predictions and improving model interpretability. While logistic regression offers coefficients, they may be less informative or misleading in complex scenarios with non-linear relationships and interactions between features.
+
+Performance: XGBoost has consistently demonstrated superior performance in various machine learning competitions and real-world applications, often achieving higher accuracy and AUC scores compared to other models, including logistic regression. Its ability to handle complex data and prevent overfitting contributes to its robust performance.
+
+Experimental Design
+Experiment 1: Feature Selection Comparison
+
+Datasets: The combined dataset is split into training (70%), validation (15%), and testing (15%) sets.
+Baselines: A baseline model using all features without feature selection will be compared against models using different feature selection methods.
+Metrics: AUC score, accuracy, precision, recall, and F1-score will be used to evaluate the models' performance.
+Experiment 2: Model Comparison
+
+Datasets: The same training, validation, and testing sets from Experiment 1 will be used.
+Baselines: The best-performing feature selection method from Experiment 1 will be used to train all four classification models, including XGBoost and Logistic Regression.
+Metrics: AUC score, accuracy, precision, recall, and F1-score will be used to compare the performance of the different models, specifically highlighting the comparison between XGBoost and Logistic Regression.
+Focus: This experiment will focus on demonstrating the superior performance of XGBoost over Logistic Regression and other models in predicting diabetes risk based on the BRFSS dataset.
+Experimental Results
+Expected Findings:
+
+Feature selection will improve model performance compared to using all features without selection.
+XGBoost is expected to achieve the highest AUC score and overall accuracy, outperforming Logistic Regression and other models due to its advantages discussed earlier.
+The selected features will provide insights into the most important health indicators for predicting diabetes risk.
+Placeholder Figures:
+
+Bar chart comparing AUC scores for different feature selection methods.
+Table comparing performance metrics for different classification models, including XGBoost and Logistic Regression, with a clear emphasis on the superior performance of XGBoost.
+Confusion matrix for the best-performing model (likely XGBoost).
+ROC curve for the best-performing model (likely XGBoost).
+Conclusions
+Preliminary Conclusions:
+
+Machine learning can be effectively used to predict diabetes risk based on health indicators.
+Feature selection is crucial for improving model performance and interpretability.
+XGBoost is a superior model for diabetes risk prediction compared to Logistic Regression and other models due to its ability to handle complex data, prevent overfitting, and provide valuable insights through feature importance scores.
+The selected classification model, primarily XGBoost, can be used to identify individuals at high risk of developing diabetes, aiding in early detection and intervention efforts.
+Potential Challenges:
+
+Data limitations: The dataset may not be fully representative of the entire population, leading to potential biases in the model.
+Model interpretability: While XGBoost offers feature importance scores, it can still be less interpretable than logistic regression in certain aspects. Further efforts may be needed to explain and interpret the model's predictions for better understanding and trust.
+Generalizability: The model's performance may vary on different datasets or populations, requiring further validation and adaptation.
