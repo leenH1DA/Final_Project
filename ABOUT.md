@@ -1,0 +1,1 @@
+Project Goal: The code aims to predict the likelihood of diabetes based on health indicators using machine learning. It utilizes several classification models, feature selection techniques, and performance evaluation metrics to achieve this goal.
